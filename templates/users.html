@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  {% if data %}
+    {% for user in data %}
+        name: {{data[user]['user_name']}}
+        password: {{data[user]['password']}}
+
+         <a href="/deleteuser/{{data[user]['user_name']}}">Delete</a>
+
+            <a href="/changepass/{{data[user]['user_name']}}">Change Password</a>
+
+            <br/><br/>
+    {% endfor %}
+  {% else %}
+    No users available
+  {% endif %}
+
+</body>
+</html>
