@@ -7,11 +7,11 @@
 <body>
 
 <form action="" method="post">
-    <label for="name">
-        <input type="text" name="name" placeholder="name"><br>
-    </label>
+    <!--<label for="name">-->
+        <!--<input type="text" name="name" value="{{ data['name'] }}" placeholder="name"><br>-->
+    <!--</label>-->
     <label for="description">
-        <textarea name="description" placeholder="desc"></textarea><br>
+        <textarea name="description" placeholder="desc">{{ data['description'] }}</textarea><br>
     </label>
     <input type="submit" value="Update list">
 
