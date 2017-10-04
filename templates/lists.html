@@ -8,8 +8,12 @@
 
 {% if data %}
     {% for list in data %}
-        name: {{data[list]['name']}}
+        name: {{data[list]['name']}}<br>
         description: {{data[list]['description']}}
+<br>
+         <a href="/delete_list/{{data[list]['name']}}">Delete</a>
+
+         <a href="/update_list/{{data[list]['name']}}">Update</a><br><br>
 
     {% endfor %}
 
