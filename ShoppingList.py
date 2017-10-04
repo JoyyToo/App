@@ -10,7 +10,7 @@ class ShoppingList(object):
         if name and description:
             self.sl[name] = {
                 'name': name,
-                'desc': description
+                'description': description
             }
             print(self.sl)
 
@@ -26,12 +26,15 @@ class ShoppingList(object):
     def view_list(self):
             return self.sl
 
-    def update_list(self, name, curr_desc, new_desc):
-        if name in self.sl.keys():
-            if self.sl[name]['desc'] == curr_desc:
-                self.sl[name]['desc'] = new_desc
-
-            print(self.sl)
+    def update_list(self, description, key_to_find):
+        if description:
+            for name in self.sl.keys():
+                if name == key_to_find:
+                    self.sl[name] = {
+                        'name': name,
+                        'description': description
+                    }
+                    print(self.sl)
 
             return {
                 'message': 'List successfully updated',
@@ -41,6 +44,21 @@ class ShoppingList(object):
             'message': 'List Unavailable',
             'status': 'error'
         }
+
+            #     if name in self.sl.keys():
+        #         self.sl[name] = {
+        #             'name': name,
+        #             'description': description
+        #         }
+        #         print(self.sl)
+        #              return {
+        #         'message': 'List successfully updated',
+        #         'status': 'success'
+        #     }
+        # return {
+        #     'message': 'List Unavailable',
+        #     'status': 'error'
+        # }
 
     def delete_list(self, name):
         if name in self.sl.keys():
@@ -60,7 +78,6 @@ class ShoppingList(object):
 
 new_list = ShoppingList()
 print(new_list.create_list('List one', 'Dinner for xmas'))
-print(new_list.create_list('List two', 'visitors in town'))
-print(new_list.view_list())
-# print(new_list.update_list('List one', 'Dinner for xmas', 'Xmass dinner'))
-# print(new_list.delete_list('List one'))
+# print(new_list.create_list('List two', 'visitors in town'))
+print(new_list.update_list('Dinner for xmas', 'List one'))
+
