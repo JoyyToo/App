@@ -28,6 +28,22 @@ def add_user():
     return render_template('adduser.html', data=None)
 
 
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        content = new_user.login(username, password)
+
+        print(content)
+
+        return redirect(url_for('view_list'))
+
+    return render_template('login.html', data=None)
+
+
+
 @app.route('/deleteuser/<id>', methods=['GET'])
 def deleteuser(id):
     content = new_user.deleteuser(id)
@@ -72,19 +88,18 @@ def create_list():
 @app.route('/delete_list/<id>', methods=['GET'])
 def delete_list(id):
     content = new_list.delete_list(id)
-    return redirect(url_for('index'))
+    return redirect(url_for('view_list'))
 
 
-@app.route('/update_list/<id>', methods=['POST', 'GET'])
-def update_list(id):
+@app.route('/update_list/<key_to_find>', methods=['POST', 'GET'])
+def update_list(key_to_find):
     if request.method == 'POST':
-        name = request.form['name']
-        curr_desc = request.form['curr_desc']
-        new_desc = request.form['new_desc']
+        description = request.form['description']
 
-        content = new_list.update_list(name, curr_desc, new_desc)
+        content = new_list.update_list(description, key_to_find)
 
         print(content)
+        return redirect(url_for('view_list'))
 
     return render_template('update_list.html', data=None)
 
