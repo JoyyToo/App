@@ -54,6 +54,25 @@ class User(object):
                 'status': 'error'
             }
 
+    def login(self, username, password):
+        if username and password in self.all_users:
+
+            self.all_users = {
+                "user_name": username,
+                "password": password
+            }
+            print(username)
+
+            return {
+                'message': 'Login successful',
+                'status': 'success'
+            }
+        return {
+            'message': 'Incorrect password or username'
+        }
+
 
 new_user = User()
 print(new_user.add_user('Joy', 'joyy'))
+print(new_user.login('Joy', 'joyy'))
+# print(new_user.login('Me', 'hueh'))
